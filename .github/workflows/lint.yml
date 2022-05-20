@@ -19,13 +19,6 @@ jobs:
       - name: Install Python dependencies
         run: pip install flake8 mypy isort
 
-      - name: Run isort
-        uses: Gobot1234/lint-action@v1
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          isort: true
-          auto_fix: true
-
       - name: Run flake8, mypy
         uses: wearerequired/lint-action@v1
         with:
