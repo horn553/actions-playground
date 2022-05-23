@@ -1,10 +1,7 @@
-name: Lint for commit
+name: Lint for commit/PR
 
 on:
   push:
-    paths:
-      - '**.py'
-  pull_request:
     paths:
       - '**.py'
 
