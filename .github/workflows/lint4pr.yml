@@ -23,19 +23,14 @@ jobs:
       - name: Run isort
         run: isort .
 
-      - name: List changed files
-        run: echo CHANGED_FILES=$(git diff --name-only HEAD) >> $GITHUB_ENV
+      - name: Extract branch name
+        shell: bash
+        run: echo "::set-output name=branch::${GITHUB_REF#refs/heads/}"
+        id: extract_branch
 
-      - name: debug
-        env:
-          CF: ${{ env.CHANGED_FILES }}
-        run: echo $(git diff --name-only HEAD) && echo $CF
-
-      - name: Commit file
-        uses: swinton/commit@v2.x
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Commit & push changes
+        uses: actions-js/push@v1.3
         with:
-          files: ${{ env.CHANGED_FILES }}
-          commit-message: ':robot: run isort'
-          ref: ${{ github.ref }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          message: ':robot: run isort'
+          branch: ${{ steps.extract_branch.outputs.branch }}
