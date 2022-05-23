@@ -1,7 +1,5 @@
 name: Lint
 
-on: push
-
 on:
   push:
     paths:
