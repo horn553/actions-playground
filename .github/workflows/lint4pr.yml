@@ -24,7 +24,7 @@ jobs:
         run: isort .
 
       - name: List changed files
-        run: CHANGED_FILES=$(git diff --name-only HEAD) >> $GITHUB_ENV
+        run: echo CHANGED_FILES=$(git diff --name-only HEAD) >> $GITHUB_ENV
 
       - name: debug
         env:
