@@ -23,14 +23,9 @@ jobs:
       - name: Run isort
         run: isort .
 
-      - name: Extract branch name
-        shell: bash
-        run: echo "::set-output name=branch::${GITHUB_REF#refs/heads/}"
-        id: extract_branch
-
       - name: Commit & push changes
         uses: actions-js/push@v1.3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           message: ':robot: run isort'
-          branch: ${{ steps.extract_branch.outputs.branch }}
+          branch: ${{ github.head_ref }}
