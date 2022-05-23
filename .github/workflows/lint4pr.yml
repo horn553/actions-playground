@@ -33,4 +33,4 @@ jobs:
         with:
           files: ${{ env.CHANGED_FILES }}
           commit-message: ':robot: run isort'
-          ref: ${{ GITHUB_REF }}
+          ref: ${{ github.ref }}
