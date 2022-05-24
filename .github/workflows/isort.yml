@@ -33,5 +33,5 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           files: ${{ env.changed_files }}
-          commit-message: :robot: run isort
+          commit-message: ':robot: run isort'
           ref: ${{ github.head_ref }}
