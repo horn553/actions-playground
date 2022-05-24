@@ -1,8 +1,8 @@
 name: Isort
 
 on:
-  pull_request_target:
-    types: [assigned, opened, synchronize, reopened]
+  pull_request:
+    types: [opened, synchronize, reopened]
 
 jobs:
   isort:
@@ -27,4 +27,4 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           message: ':robot: run isort'
-          branchL ${{ GITHUB_HEAD_REF }}
+          branch: ${{ GITHUB_HEAD_REF }}
