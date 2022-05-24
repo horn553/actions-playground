@@ -3,7 +3,7 @@ name: Lint
 on: push
 
 jobs:
-  lint:
+  flake8:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -67,4 +67,3 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           message: ':robot: run isort'
-          branch: ${{ github.head_ref }}
