@@ -2,7 +2,7 @@ name: Isort
 
 on:
   pull_request:
-    types: [opened, synchronize, reopened]
+    branches: '**'
 
 jobs:
   isort:
