@@ -1,6 +1,6 @@
 # isort で整列されていないコード
-import re
 import abc
+import re
 
 type(abc)
 type(re)
