@@ -25,7 +25,10 @@ jobs:
         run: isort .
 
       - name: Extract changed files
-        run: echo "changed_files=$(git diff --name-only ${{ github.head_ref }})" >> $GITHUB_ENV
+        run: |
+          echo "changed_files<<EOF" >> $GITHUB_ENV
+          git diff --name-only ${{ github.head_ref }} >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
 
       - name: Commit file
         uses: swinton/commit@v2.0.0
