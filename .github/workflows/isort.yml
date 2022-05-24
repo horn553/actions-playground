@@ -1,9 +1,8 @@
-name: Lint
+name: Isort
 
 on: pull_request
 
 jobs:
-
   isort:
     runs-on: ubuntu-latest
     steps:
