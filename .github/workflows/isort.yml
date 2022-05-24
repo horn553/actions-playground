@@ -27,4 +27,4 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           message: ':robot: run isort'
-          branch: ${{ GITHUB_HEAD_REF }}
+          branch: ${{ github.head.ref }}
