@@ -1,0 +1,40 @@
+name: Isort
+
+on:
+  pull_request:
+    branches: '**'
+
+jobs:
+  isort:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.head_ref }}
+
+      - name: Setup Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: '3.x'
+
+      - name: Install isort
+        run: pip install isort
+
+      - name: Run isort
+        run: isort .
+
+      - name: Extract changed files
+        run: |
+          echo "changed_files<<EOF" >> $GITHUB_ENV
+          git diff --name-only ${{ github.head_ref }} >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
+
+      - name: Commit file
+        uses: swinton/commit@v2.0.0
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          files: ${{ env.changed_files }}
+          commit-message: ':robot: run isort'
+          ref: ${{ github.head_ref }}
